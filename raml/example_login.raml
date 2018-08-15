@@ -1,0 +1,46 @@
+#%RAML 1.0
+title: Login Example
+version: v1
+baseUri: https://example.com
+mediaType:  application/json
+
+types:
+  Error:
+    type: object
+    properties:
+      fieldName:
+        type: string
+        example: 'field'
+
+/api/login:
+  post:
+    body:
+      properties:
+        loginId:
+          type: string
+          required: true
+        lastname:
+          type: string
+          required: true
+    responses:
+      200:
+        body:
+          properties:
+            response:
+              enum:
+                - success
+      400:
+        body:
+          properties:
+            errorList:
+              type: Error[]
+              required: true
+          examples:
+            badUsername:
+              errorList:
+                -
+                  fieldName: userName
+            badPassword:
+              errorList:
+                -
+                  fieldName: password

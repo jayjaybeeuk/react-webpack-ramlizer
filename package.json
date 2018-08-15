@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack-babel",
+  "name": "react-webpack-ramlizer",
   "version": "0.0.4",
-  "description": "React Webpack Babel Starter Kit",
+  "description": "React Webpack Ramlizer",
   "main": "''",
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
@@ -9,16 +9,22 @@
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "dev": " webpack-dashboard -- webpack-dev-server",
-    "test": "export NODE_ENV=test && jest"
+    "test": "export NODE_ENV=test && jest",
+    "ramlizer": "node ./node_modules/ramlizer/ramlizer.js --folder ./raml/ --port 8080 --endpoint api/ramlizer",
+    "ramlizerDebug": "node --inspect-brk ./node_modules/ramlizer/ramlizer.js --folder ./raml/ --port 8080",
+    "cypress:run": "cypress run",
+    "cypress:run:chrome": "cypress run --browser chrome ",
+    "test:e2e": "npm run start & npm run ramlizer & npm run cypress:run:chrome"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ReactJSResources/react-webpack-babel"
+    "url": "https://github.com/jayjaybeeuk/react-webpack-babel"
   },
-  "author": "ReactJSResources",
+  "author": "jayjaybeeuk",
   "license": "MIT",
-  "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
+  "homepage": "https://github.com/jayjaybeeuk/react-webpack-ramlizer#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
@@ -36,7 +42,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "concurrently": "^3.6.1",
     "css-loader": "^0.28.7",
+    "cypress": "^3.1.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.13.1",
@@ -50,6 +58,7 @@
     "loglevel": "^1.6.0",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.0.9",
+    "ramlizer": "0.0.3",
     "react-hot-loader": "^4.0.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",

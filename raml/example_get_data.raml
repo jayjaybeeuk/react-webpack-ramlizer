@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: A basic get data example
+version: v1
+baseUri: https://example.com
+mediaType:  application/json
+
+
+/api/getData: # optional resource
+  get: # HTTP method declaration
+    responses: # declare a response
+      200: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+                "title": "Get data Response",
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            examples:
+              exampleOne:
+                {
+                  message: "Example One"
+                }
+              exampleTwo:
+                {
+                  message: "Example Two"
+                }

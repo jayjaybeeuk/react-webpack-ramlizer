@@ -1,0 +1,43 @@
+#%RAML 1.0
+title: Logout Example
+version: v1
+baseUri: https://example.com
+mediaType:  application/json
+
+types:
+  Error:
+    type: object
+    properties:
+      failureType:
+        type: string
+        example: 'field'
+
+/api/logout:
+  post:
+    body:
+      properties:
+        loginId:
+          type: string
+          required: true
+    responses:
+      200:
+        body:
+          properties:
+            response:
+              enum:
+                - success
+      400:
+        body:
+          properties:
+            errorList:
+              type: Error[]
+              required: true
+          examples:
+            success:
+              errorList:
+                -
+                  failureType: error
+            badPassword:
+              errorList:
+                -
+                  failureType: badPassword
